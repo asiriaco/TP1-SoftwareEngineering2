@@ -8,6 +8,8 @@ Flight::Flight(std::string departure, std::string destination, std::string date,
     this->capacity = capacity;
 }
 
+Flight::~Flight() {}
+
 std::string Flight::getDeparture() const {
     return departure;
 }
@@ -40,6 +42,13 @@ std::vector<Client> Flight::getClients() const {
     return clients;
 }
 
-void Flight::changeDate(std::string newDate){
-    date = newDate;
+bool Flight::changeDate(std::string newDate, int numberOfSeats){
+    if(getAvailableSeats() > numberOfSeats){
+        date = newDate;
+        return true;
+    }
+    else {
+        std::cout << "Not enough available seats" << std::endl;
+        return false;
+    }
 }

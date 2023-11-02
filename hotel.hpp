@@ -8,6 +8,7 @@
 class Hotel {
 public:
     Hotel(std::string name, std::string location, int rating, double price);
+    ~Hotel();
     std::string getName() const;
     std::string getLocation() const;
     int getRating() const;

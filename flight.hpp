@@ -2,6 +2,7 @@
 #ifndef FLIGHT_HPP
 #define FLIGHT_HPP
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include "client.hpp"
@@ -9,6 +10,7 @@
 class Flight {
 public:
     Flight(std::string departure, std::string destination, std::string date, int capacity);
+    ~Flight();
     std::string getDeparture() const;
     std::string getDestination() const;
     std::string getDate() const;
@@ -16,7 +18,7 @@ public:
     int getAvailableSeats() const;
     bool bookSeats(Client client, int numberOfSeats);
     std::vector<Client> getClients() const;
-    void changeDate(std::string newDate);
+    bool changeDate(std::string newDate, int numberOfSeats);
 
 private:
     std::string departure;

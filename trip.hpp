@@ -9,12 +9,13 @@
 class Trip {
 public:
     Trip(const Flight& flight, const Hotel& hotel, const Client& client, int numberOfTravellers);
+    ~Trip();
     void bookFlight();
     void bookHotel();
-    void cancelFlight();
-    void cancelHotel();
+    bool changeFlight(Flight& flight);
+    bool changeHotel(Hotel& hotel);
     void reescheduleTrip(std::string newDate);
-    void print() const;
+    
 
 private:
     Flight flight_;
