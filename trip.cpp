@@ -1,7 +1,7 @@
 #include "trip.hpp"
 
-Trip::Trip(const Flight& flight, const Hotel& hotel, const Client& client, int numberOfTravellers)
-    : flight_(flight), hotel_(hotel), client_(client), numberOfTravellers_(numberOfTravellers) {
+Trip::Trip(const Flight& flight, const Hotel& hotel, const Client& client, const CarRental& carRental, int numberOfTravellers)
+    : flight_(flight), hotel_(hotel), client_(client), carRental_(carRental), numberOfTravellers_(numberOfTravellers) {
         status_ = "OK";
     }
 
