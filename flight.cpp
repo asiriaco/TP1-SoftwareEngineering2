@@ -6,6 +6,7 @@ Flight::Flight(std::string departure, std::string destination, std::string date,
     this->destination = destination;
     this->date = date;
     this->capacity = capacity;
+    avaliableSeats = capacity;
 }
 
 Flight::~Flight() {}
@@ -22,23 +23,28 @@ std::string Flight::getDate() const {
     return date;
 }
 
+void Flight::includeSeats(int seats) {
+    avaliableSeats -= seats;
+}
+
 int Flight::getCapacity() const {
     return capacity;
 }
 
 int Flight::getAvailableSeats() const {
-    return capacity - clients.size();
+    return avaliableSeats;
 }
 
 bool Flight::bookSeats(Client client, int numberOfSeats) {
     if (getAvailableSeats() > numberOfSeats) {
-        clients.push_back(client);
+        clients.push_back(client.getName());
+        avaliableSeats -= numberOfSeats;
         return true;
     }
     return false;
 }
 
-std::vector<Client> Flight::getClients() const {
+std::vector<std::string> Flight::getClients() const {
     return clients;
 }
 

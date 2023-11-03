@@ -1,12 +1,16 @@
 #include "trip.hpp"
 
 Trip::Trip(const Flight& flight, const Hotel& hotel, const Client& client, int numberOfTravellers)
-    : flight_(flight), hotel_(hotel), client_(client), numberOfTravellers(numberOfTravellers) {}
+    : flight_(flight), hotel_(hotel), client_(client), numberOfTravellers_(numberOfTravellers) {
+        status_ = "OK";
+    }
 
-Trip::~Trip() {}
+Trip::~Trip() {
+    std::cout << "Trip destructor called" << std::endl;
+}
 
 void Trip::bookFlight() {
-    if (!flight_.bookSeats(client_, numberOfTravellers)){
+    if (!flight_.bookSeats(client_, numberOfTravellers_)){
         std::cout << "Flight is fully booked" << std::endl;
     }
     else{
@@ -15,17 +19,20 @@ void Trip::bookFlight() {
 }
 
 void Trip::bookHotel(){
-    if (!hotel_.bookHotel(numberOfTravellers)){
+    int roomNumber = hotel_.bookHotel();
+    if (roomNumber == -1){
         std::cout << "Hotel is fully booked" << std::endl;
+        status_ = "Missing Hotel";
     }
     else{
+        roomNumber_ = roomNumber;
         std::cout << "Successfully booked hotel" << std::endl; 
     }
 }
 
 void Trip::reescheduleTrip(std::string newDate){
     
-    if(!flight_.changeDate(newDate, numberOfTravellers)){
+    if(!flight_.changeDate(newDate, numberOfTravellers_)){
         std::cout << "Could not reeschedule flight" << std::endl;
     }
     else{
@@ -34,8 +41,8 @@ void Trip::reescheduleTrip(std::string newDate){
 }
 
 bool Trip::changeFlight(Flight& flight){
-    if(flight.getAvailableSeats() < numberOfTravellers){
-        std::cout << "Not enough available seats" << std::endl;
+    if(flight.getAvailableSeats() < numberOfTravellers_){
+        std::cout << "Flight selected is full. We're keeping with the initial flight" << std::endl;
         return false;
     }
     else{
@@ -47,15 +54,28 @@ bool Trip::changeFlight(Flight& flight){
 }
 
 bool Trip::changeHotel(Hotel& hotel){
-    if(hotel.bookHotel(numberOfTravellers)){
+    int newRoomNumber = hotel.bookHotel();
+
+    if(newRoomNumber != -1){
         hotel_ = hotel;
+        roomNumber_ = newRoomNumber;
         std::cout << "Successfully changed hotel" << std::endl;
         return true;
     }
     else{
-        std::cout << "Not enough available rooms" << std::endl;
+        std::cout << "Not enough available rooms, we're keeping with the initial booking" << std::endl;
         return false;
     }
+}
+
+std::string Trip::getStatus() const{
+    return status_;
+}
+
+void Trip::cancelTrip(){
+    status_ = "Canceled";
+    std::cout << "Successfully cancelled trip" << std::endl;
+    delete this;
 }
 
 

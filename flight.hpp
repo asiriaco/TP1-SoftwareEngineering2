@@ -1,4 +1,3 @@
-
 #ifndef FLIGHT_HPP
 #define FLIGHT_HPP
 
@@ -14,10 +13,11 @@ public:
     std::string getDeparture() const;
     std::string getDestination() const;
     std::string getDate() const;
+    void includeSeats(int seats);
     int getCapacity() const;
     int getAvailableSeats() const;
     bool bookSeats(Client client, int numberOfSeats);
-    std::vector<Client> getClients() const;
+    std::vector<std::string> getClients() const;
     bool changeDate(std::string newDate, int numberOfSeats);
 
 private:
@@ -25,7 +25,8 @@ private:
     std::string destination;
     std::string date;
     int capacity;
-    std::vector<Client> clients;
+    int avaliableSeats;
+    std::vector<std::string> clients;
 };
 
 #endif

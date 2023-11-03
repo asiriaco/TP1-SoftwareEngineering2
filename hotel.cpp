@@ -19,12 +19,20 @@ double Hotel::getPrice() const {
     return price_;
 }
 
-bool Hotel::bookHotel(int numberOfGuests) {
-    if (avaliableRooms.size() >= numberOfGuests){
+void Hotel::setAvaliableRooms(std::vector<int> rooms) {
+    for (int room : rooms){
+        avaliableRooms.push_back(room);
+    }
+}
+
+int Hotel::bookHotel() {
+    int roomNumber = 0;
+    if (avaliableRooms.size() >= 0){
+        roomNumber = avaliableRooms.back();
         avaliableRooms.pop_back();
-        return true;
     }
     else{
-        return false;
+        return -1;
     }
+    return roomNumber;
 }

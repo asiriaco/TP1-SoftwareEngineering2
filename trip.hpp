@@ -12,16 +12,20 @@ public:
     ~Trip();
     void bookFlight();
     void bookHotel();
+    void reescheduleTrip(std::string newDate);
+    void cancelTrip();
     bool changeFlight(Flight& flight);
     bool changeHotel(Hotel& hotel);
-    void reescheduleTrip(std::string newDate);
-    
+    std::string getStatus() const;
+
 
 private:
     Flight flight_;
     Hotel hotel_;
     Client client_;
-    int numberOfTravellers;
+    int numberOfTravellers_;
+    int roomNumber_;
+    std::string status_;
 };
 
 

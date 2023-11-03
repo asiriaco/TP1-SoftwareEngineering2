@@ -11,9 +11,11 @@ public:
     ~Hotel();
     std::string getName() const;
     std::string getLocation() const;
+    void setAvaliableRooms(std::vector<int> rooms);
     int getRating() const;
     double getPrice() const;
-    bool bookHotel(int numberOfGuests);
+    int bookHotel();
+    void cancelBooking(int roomNumber);
 private:
     std::vector<int> avaliableRooms;
     std::string name_;
