@@ -33,8 +33,9 @@ private:
     int numberOfCars_;
     std::string status_;
 
-    //Extract Methods
+    //Refactoring changes
     void outputBookingFailure(const std::string& service);
+    void outputBookingSuccess(const std::string& service);
 };
 
 
