@@ -31,14 +31,11 @@ void Trip::bookHotel(){
 }
 
 void Trip::bookCar(){
-    int roomNumber = carRental_.bookCar(client_, numberOfCars_);
-    if (roomNumber == -1){
-        std::cout << "Hotel is fully booked" << std::endl;
-        status_ = "Missing Hotel";
+    if (!carRental_.bookCar(client_, numberOfCars_)){
+        std::cout << "All cars rented out." << std::endl;
     }
     else{
-        roomNumber_ = roomNumber;
-        std::cout << "Successfully booked hotel" << std::endl; 
+        std::cout << "successfully rented a car." << std::endl; 
     }
 }
 
@@ -80,6 +77,19 @@ bool Trip::changeHotel(Hotel& hotel){
     }
 }
 
+bool Trip::changeCar(CarRental& carRental){
+    if(carRental.getAvailableCars() < numberOfCars_){
+        std::cout << "Car selected is not available. We're keeping with the initial car" << std::endl;
+        return false;
+    }
+    else{
+        carRental_ = carRental;
+        bookCar();
+        std::cout << "Successfully changed car" << std::endl;
+        return true;
+    }
+
+}
 std::string Trip::getStatus() const{
     return status_;
 }

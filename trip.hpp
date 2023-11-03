@@ -18,6 +18,7 @@ public:
     void cancelTrip();
     bool changeFlight(Flight& flight);
     bool changeHotel(Hotel& hotel);
+    bool changeCar(CarRental& carRental);
     std::string getStatus() const;
 
 
