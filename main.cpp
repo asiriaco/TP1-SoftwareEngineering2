@@ -68,5 +68,37 @@ std::cout<< "Testing class Hotel.hpp" << std::endl;
 #pragma endregion
 
 std::cout << "Testing class Trip.hpp" << std::endl;
+#pragma region TEST TRIP
+    Trip trip = Trip(flight, hotel, client1, 2);
+    assert(trip.getStatus() == "OK");
+
+    trip.bookFlight();
+    trip.bookHotel();
+
+    assert(trip.getRoomNumber() == 909);
+
+    Hotel hotel2 = Hotel("Ritz", "Sofia", 5, 600.0);
+    bool success = trip.changeHotel(hotel2);
+    assert(success == false);
+
+    std::vector<int> rooms{100, 401, 707};
+    hotel2.setAvaliableRooms(rooms);
+    success = trip.changeHotel(hotel2);
+    assert(success = true);
+
+    int currentRoomNumber = trip.getRoomNumber();
+    assert(currentRoomNumber == 707);
+
+    trip.cancelTrip();
+    assert(trip.getStatus() == "Canceled");
+
+    Trip trip2 = Trip(flight, hotel, client2, 5);
+    trip2.bookHotel();
+    assert(trip2.getStatus() == "Missing Hotel");  
+
+    hotel2.setAvaliableRooms({205, 409, 614, 456, 781 });
+    success = trip2.changeHotel(hotel2);
+    assert(success == true);
+    assert(trip2.getStatus() == "OK");
 
 }

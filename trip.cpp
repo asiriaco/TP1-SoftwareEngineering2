@@ -60,6 +60,7 @@ bool Trip::changeHotel(Hotel& hotel){
         hotel_ = hotel;
         roomNumber_ = newRoomNumber;
         std::cout << "Successfully changed hotel" << std::endl;
+        status_ = "OK";
         return true;
     }
     else{
@@ -72,10 +73,14 @@ std::string Trip::getStatus() const{
     return status_;
 }
 
+int Trip::getRoomNumber() const{
+    return roomNumber_;
+}
+
 void Trip::cancelTrip(){
     status_ = "Canceled";
     std::cout << "Successfully cancelled trip" << std::endl;
-    delete this;
+    hotel_.setAvaliableRooms({roomNumber_});
 }
 
 

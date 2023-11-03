@@ -16,6 +16,7 @@ public:
     void cancelTrip();
     bool changeFlight(Flight& flight);
     bool changeHotel(Hotel& hotel);
+    int getRoomNumber() const;
     std::string getStatus() const;
 
 
