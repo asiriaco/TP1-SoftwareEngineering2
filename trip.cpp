@@ -10,10 +10,12 @@ Trip::Trip(const Flight &flight, const Hotel &hotel, const Client &client,
 Trip::~Trip() {}
 
 void Trip::bookFlight() {
-  if (!flight_.bookSeats(client_, numberOfTravellers_)) {
-    outputBookingFailure("Flight");
+  if (checkAvailability("Flight", numberOfTravellers_, flight_.getAvailableSeats())) {
+      flight_.bookSeats(client_, numberOfTravellers_);
+      outputBookingSuccess("flight");
   } else {
-    outputBookingSuccess("flight");
+      outputBookingFailure("Flight");
+      status_ = "Flight is fully booked";
   }
 }
 
@@ -29,13 +31,14 @@ void Trip::bookHotel() {
 }
 
 void Trip::bookCar() {
-  if (!carRental_.bookCar(client_, numberOfCars_)) {
-    outputBookingFailure("Car");
-    status_ = "No cars available";
-  } else {
-    outputBookingSuccess("car");
-    status_ = "Car rented";
-  }
+    if (checkAvailability("Car", numberOfCars_, carRental_.getAvailableCars())) {
+        carRental_.bookCar(client_, numberOfCars_);
+        outputBookingSuccess("car");
+        status_ = "Car rented";
+    } else {
+        outputBookingFailure("car");
+        status_ = "No cars available";
+    }
 }
 
 void Trip::reescheduleTrip(std::string newDate) {
@@ -108,4 +111,12 @@ void Trip::outputBookingFailure(const std::string& service) {
 
 void Trip::outputBookingSuccess(const std::string& service) {
     std::cout << "Successfully booked/rented " << service << std::endl;
+}
+
+bool Trip::checkAvailability(const std::string& service, int required, int available) {
+    if (required > available) {
+        outputBookingFailure(service);
+        return false;
+    }
+    return true;
 }

@@ -36,6 +36,7 @@ private:
     //Refactoring changes
     void outputBookingFailure(const std::string& service);
     void outputBookingSuccess(const std::string& service);
+    bool checkAvailability(const std::string& service, int required, int available);
 };
 
 
