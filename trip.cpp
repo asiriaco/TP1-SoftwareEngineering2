@@ -5,9 +5,7 @@ Trip::Trip(const Flight& flight, const Hotel& hotel, const Client& client, int n
         status_ = "OK";
     }
 
-Trip::~Trip() {
-    std::cout << "Trip destructor called" << std::endl;
-}
+Trip::~Trip() {}
 
 void Trip::bookFlight() {
     if (!flight_.bookSeats(client_, numberOfTravellers_)){

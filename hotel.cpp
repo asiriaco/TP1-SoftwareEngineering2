@@ -30,7 +30,7 @@ void Hotel::setAvaliableRooms(std::vector<int> rooms) {
 
 int Hotel::bookHotel() {
     int roomNumber = 0;
-    if (avaliableRooms.size() >= 0){
+    if (avaliableRooms.size() > 0){
         roomNumber = avaliableRooms.back();
         avaliableRooms.pop_back();
     }

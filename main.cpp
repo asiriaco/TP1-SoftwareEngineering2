@@ -56,11 +56,10 @@ std::cout<< "Testing class Hotel.hpp" << std::endl;
     assert(hotel.getLocation() == "Sofia");
     assert(hotel.getRating() == 5);
     assert(hotel.getPrice() == 400.0);
-
     int roomNumber = hotel.bookHotel();
     assert(roomNumber == -1);
 
-    std::vector<int> rooms{301, 405, 506, 909, 1302};
+    std::vector<int> rooms{909, 1302};
     hotel.setAvaliableRooms(rooms);
     roomNumber = hotel.bookHotel();
     assert(roomNumber == 1302);
@@ -92,8 +91,11 @@ std::cout << "Testing class Trip.hpp" << std::endl;
     trip.cancelTrip();
     assert(trip.getStatus() == "Canceled");
 
-    Trip trip2 = Trip(flight, hotel, client2, 5);
+    Hotel hotel3 = Hotel("Plaza", "Sofia", 5, 150.0);
+
+    Trip trip2 = Trip(flight, hotel3, client2, 5);
     trip2.bookHotel();
+    std::cout << trip2.getStatus() << std::endl;
     assert(trip2.getStatus() == "Missing Hotel");  
 
     hotel2.setAvaliableRooms({205, 409, 614, 456, 781 });
@@ -101,4 +103,9 @@ std::cout << "Testing class Trip.hpp" << std::endl;
     assert(success == true);
     assert(trip2.getStatus() == "OK");
 
+#pragma endregion
+
+std::cout << "Classes tests finished, all tests passed" << std::endl;
+
+    return 0;
 }
