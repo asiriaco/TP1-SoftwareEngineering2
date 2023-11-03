@@ -16,7 +16,7 @@ Trip(const Flight& flight, const Hotel& hotel, const Client& client, const CarRe
     void bookCar();
     void reescheduleTrip(std::string newDate);
     void cancelTrip();
-    bool changeFlight(Flight& flight);
+    bool changeFlight(Flight &flight);
     bool changeHotel(Hotel& hotel);
     bool changeCar(CarRental& carRental);
     int getRoomNumber() const;
@@ -32,6 +32,9 @@ private:
     int roomNumber_;
     int numberOfCars_;
     std::string status_;
+
+    //Extract Methods
+    void outputBookingFailure(const std::string& service);
 };
 
 

@@ -11,7 +11,7 @@ Trip::~Trip() {}
 
 void Trip::bookFlight() {
   if (!flight_.bookSeats(client_, numberOfTravellers_)) {
-    std::cout << "Flight is fully booked" << std::endl;
+    outputBookingFailure("Flight");
   } else {
     std::cout << "Successfully booked flight" << std::endl;
   }
@@ -20,7 +20,7 @@ void Trip::bookFlight() {
 void Trip::bookHotel() {
   int roomNumber = hotel_.bookHotel();
   if (roomNumber == -1) {
-    std::cout << "Hotel is fully booked" << std::endl;
+    outputBookingFailure("Hotel");
     status_ = "Missing Hotel";
   } else {
     roomNumber_ = roomNumber;
@@ -30,7 +30,7 @@ void Trip::bookHotel() {
 
 void Trip::bookCar() {
   if (!carRental_.bookCar(client_, numberOfCars_)) {
-    std::cout << "All cars rented out." << std::endl;
+    outputBookingFailure("Car");
     status_ = "No cars available";
   } else {
     std::cout << "successfully rented a car." << std::endl;
@@ -100,4 +100,8 @@ void Trip::cancelTrip() {
   status_ = "Canceled";
   std::cout << "Successfully cancelled trip" << std::endl;
   hotel_.setAvaliableRooms({roomNumber_});
+}
+
+void Trip::outputBookingFailure(const std::string& service) {
+    std::cout << service << " no longer availabe. Fully booked or rented out." << std::endl;
 }
