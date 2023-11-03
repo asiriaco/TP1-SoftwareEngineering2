@@ -66,9 +66,26 @@ std::cout<< "Testing class Hotel.hpp" << std::endl;
 
 #pragma endregion
 
+std::cout<< "Testing class CarRental.hpp" << std::endl;
+#pragma region TEST CAR RENTAL
+    CarRental car = CarRental("Chevrolet Onix", "Hertz", 5, 10);
+    CarRental car2 = CarRental("Kia Soul", "Localiza", 2, 5);
+
+    assert(car.getVehicleModel() == "Chevrolet Onix");
+    assert(car.getRentalAgency() == "Hertz");
+    assert(car.getRentalDuration() == 5);
+    assert(car.getAvailableCars() == 10);
+
+    assert(car2.bookCar(client1, 20) == false);
+    int dailyRate = 100;
+    int rentalCost = car.calculateRentalCost(dailyRate);
+    assert(rentalCost == 500);
+
+#pragma endregion
+
 std::cout << "Testing class Trip.hpp" << std::endl;
 #pragma region TEST TRIP
-    Trip trip = Trip(flight, hotel, client1, 2);
+    Trip trip = Trip(flight, hotel, client1, car, 2, 1);
     assert(trip.getStatus() == "OK");
 
     trip.bookFlight();
@@ -93,7 +110,7 @@ std::cout << "Testing class Trip.hpp" << std::endl;
 
     Hotel hotel3 = Hotel("Plaza", "Sofia", 5, 150.0);
 
-    Trip trip2 = Trip(flight, hotel3, client2, 5);
+    Trip trip2 = Trip(flight, hotel3, client2, car,  5, 10);
     trip2.bookHotel();
     std::cout << trip2.getStatus() << std::endl;
     assert(trip2.getStatus() == "Missing Hotel");  
@@ -102,7 +119,7 @@ std::cout << "Testing class Trip.hpp" << std::endl;
     success = trip2.changeHotel(hotel2);
     assert(success == true);
     assert(trip2.getStatus() == "OK");
-
+  
 #pragma endregion
 
 std::cout << "Classes tests finished, all tests passed" << std::endl;
