@@ -3,6 +3,9 @@
 Hotel::Hotel(std::string name, std::string location, int rating, double price)
     : name_(name), location_(location), rating_(rating), price_(price) {}
 
+
+Hotel::~Hotel() {}  
+
 std::string Hotel::getName() const {
     return name_;
 }

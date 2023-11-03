@@ -78,11 +78,11 @@ std::cout << "Testing class Trip.hpp" << std::endl;
     assert(trip.getRoomNumber() == 909);
 
     Hotel hotel2 = Hotel("Ritz", "Sofia", 5, 600.0);
-    bool success = trip.changeHotel(hotel2);
+    success = trip.changeHotel(hotel2);
     assert(success == false);
 
-    std::vector<int> rooms{100, 401, 707};
-    hotel2.setAvaliableRooms(rooms);
+    std::vector<int> newRooms{100, 401, 707};
+    hotel2.setAvaliableRooms(newRooms);
     success = trip.changeHotel(hotel2);
     assert(success = true);
 
