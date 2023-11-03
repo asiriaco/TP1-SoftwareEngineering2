@@ -2,7 +2,8 @@
 #include "car_rental.hpp"
 
 CarRental::CarRental(const std::string& vehicleModel, const std::string& rentalAgency, int rentalDuration, int avaliableCars)
-    : vehicleModel_(vehicleModel), rentalAgency_(rentalAgency), rentalDuration_(rentalDuration), avaliableCars_,(avaliableCars) {}
+    : vehicleModel_(vehicleModel), rentalAgency_(rentalAgency), rentalDuration_(rentalDuration), avaliableCars_(avaliableCars) {}
+
 
 std::string CarRental::getVehicleModel() const {
     return vehicleModel_;
@@ -23,3 +24,18 @@ float CarRental::calculateRentalCost(float dailyRate) const {
 int CarRental::getAvailableCars() const {
     return avaliableCars_;
 }
+
+std::vector<std::string> CarRental::getClients() const {
+    return clients;
+}
+
+bool CarRental::bookCar(Client client, int numberOfCars) {
+    if (getAvailableCars() > numberOfCars) {
+        clients.push_back(client.getName());
+        avaliableCars_ -= numberOfCars;
+        return true;
+    }
+    return false;
+}
+
+

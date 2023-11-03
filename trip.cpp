@@ -1,7 +1,7 @@
 #include "trip.hpp"
 
-Trip::Trip(const Flight& flight, const Hotel& hotel, const Client& client, const CarRental& carRental, int numberOfTravellers)
-    : flight_(flight), hotel_(hotel), client_(client), carRental_(carRental), numberOfTravellers_(numberOfTravellers) {
+Trip::Trip(const Flight& flight, const Hotel& hotel, const Client& client, const CarRental& carRental, int numberOfTravellers, int numberOfCars)
+    : flight_(flight), hotel_(hotel), client_(client), carRental_(carRental), numberOfTravellers_(numberOfTravellers), numberOfCars_(numberOfCars) {
         status_ = "OK";
     }
 
@@ -20,6 +20,18 @@ void Trip::bookFlight() {
 
 void Trip::bookHotel(){
     int roomNumber = hotel_.bookHotel();
+    if (roomNumber == -1){
+        std::cout << "Hotel is fully booked" << std::endl;
+        status_ = "Missing Hotel";
+    }
+    else{
+        roomNumber_ = roomNumber;
+        std::cout << "Successfully booked hotel" << std::endl; 
+    }
+}
+
+void Trip::bookCar(){
+    int roomNumber = carRental_.bookCar(client_, numberOfCars_);
     if (roomNumber == -1){
         std::cout << "Hotel is fully booked" << std::endl;
         status_ = "Missing Hotel";

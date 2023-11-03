@@ -9,7 +9,7 @@
 
 class Trip {
 public:
-    Trip(const Flight& flight, const Hotel& hotel, const Client& client, const CarRental& carRental, int numberOfTravellers);
+    Trip(const Flight& flight, const Hotel& hotel, const Client& client, const CarRental& carRental, int numberOfTravellers, int numberOfCars);
     ~Trip();
     void bookFlight();
     void bookHotel();
@@ -28,6 +28,7 @@ private:
     CarRental carRental_;
     int numberOfTravellers_;
     int roomNumber_;
+    int numberOfCars_;
     std::string status_;
 };
 
