@@ -11,3 +11,9 @@ Na função main, inicialmente testamos todas as classes individualmente, e depo
 
 ## Tecnologias utilizadas
 A linguagem escolhida foi o C++, pela natural aptidão desta a programas orientados à objetos e também pelo bom desempenho. Além da ferramenta lizard para analisar a qualidade do código e apontar as funções mais complexas, utilizamos como IDE o VSCode e o GitHub para fins de versionamento. Por fim, bibliotecas padrão, como Vector<T>, foram utilizadas para emular estruturas de dados. 
+
+## Compilação e execução
+Para compilar o programa, execute o seguinte comando no terminal:
+g++ client.cpp flight.cpp hotel.cpp trip.cpp car_rental.cpp main.cpp -o tripSystem
+Após isso, para executar, execute essa instrução:
+./tripSystem
