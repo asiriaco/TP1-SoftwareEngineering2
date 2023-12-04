@@ -1,4 +1,4 @@
-name: Aula Pratica 5 CI
+name: TP2 - CI
 
 on: [push, pull_request]
 
@@ -17,9 +17,9 @@ jobs:
       run: |
         if [[ $RUNNER_OS == "Linux" ]]; then
           sudo apt-get update
-          sudo apt-get install g++ -y
+          sudo apt-get install -y g++
         elif [[ $RUNNER_OS == "macOS" ]]; then
-          brew install gcc
+          brew install g++
         elif [[ $RUNNER_OS == "Windows" ]]; then
           choco install mingw
         fi
