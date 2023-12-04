@@ -1,5 +1,7 @@
 #include "client.hpp"
 
+// Comment for tests 
+
 Client::Client(const std::string& name, const std::string& email, const std::string& phone)
     : name_(name), email_(email), phone_(phone) {}
 
