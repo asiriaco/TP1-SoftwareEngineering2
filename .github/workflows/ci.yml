@@ -19,7 +19,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y g++
         elif [[ $RUNNER_OS == "macOS" ]]; then
-          brew install g++
+          brew install gcc
         elif [[ $RUNNER_OS == "Windows" ]]; then
           choco install mingw
         fi
