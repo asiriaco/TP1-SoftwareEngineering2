@@ -1,4 +1,4 @@
-name: TP2 - CI
+name: Aula Pratica 5 CI
 
 on: [push, pull_request]
 
@@ -24,13 +24,24 @@ jobs:
           choco install mingw
         fi
 
-    - name: Compile and Run Tests
+    - name: Compile and Run Tests Without Main and Integration Tests
       shell: bash
       run: |
         if [[ $RUNNER_OS == "Windows" ]]; then
-          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp integration_tests.cpp trip.cpp unit_tests.cpp main.cpp -o TravelAgency.exe
-          ./TravelAgency.exe
+          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp unit_tests.cpp -o TravelAgencyUnit.exe
+          ./TravelAgencyUnit.exe
         else
-          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp integration_tests.cpp trip.cpp unit_tests.cpp main.cpp -o TravelAgency
-          ./TravelAgency
+          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp unit_tests.cpp -o TravelAgencyUnit
+          ./TravelAgencyUnit
+        fi
+
+    - name: Compile and Run Only With Integration Tests
+      shell: bash
+      run: |
+        if [[ $RUNNER_OS == "Windows" ]]; then
+          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp integration_tests.cpp -o TravelAgencyIntegration.exe
+          ./TravelAgencyIntegration.exe
+        else
+          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp integration_tests.cpp -o TravelAgencyIntegration
+          ./TravelAgencyIntegration
         fi
