@@ -46,7 +46,7 @@ void testCancelleTrip() {
   CarRental car = CarRental("Kia Soul", "Localiza", 2, 5);
   Trip trip = Trip(flight, hotel, client1, car, 5, 5);
   trip.cancelTrip();
-  assert(trip.getStatus() == "Successfully cancelled trip");
+  assert(trip.getStatus() == "Canceled");
 }
 
 int main() {
