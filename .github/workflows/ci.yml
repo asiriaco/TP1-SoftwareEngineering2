@@ -34,3 +34,15 @@ jobs:
           g++ -std=c++11 car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp unit_tests.cpp -o TravelAgencyUnit
           ./TravelAgencyUnit
         fi
+
+    - name: Compile and Run Integration Tests
+      shell: bash
+      run: |
+        if [[ $RUNNER_OS == "Windows" ]]; then
+          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp integration_tests.cpp -o TravelAgencyIntegration.exe
+          ./TravelAgencyIntegration.exe
+        else
+          g++ -std=c++11 car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp integration_tests.cpp -o TravelAgencyIntegration
+          ./TravelAgencyIntegration
+        fi
+        
