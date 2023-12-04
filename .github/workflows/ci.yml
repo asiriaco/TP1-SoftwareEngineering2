@@ -31,6 +31,6 @@ jobs:
           g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp unit_tests.cpp -o TravelAgencyUnit.exe
           ./TravelAgencyUnit.exe
         else
-          g++ car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp unit_tests.cpp -o TravelAgencyUnit
+          g++ -std=c++11 car_rental.cpp client.cpp flight.cpp hotel.cpp trip.cpp unit_tests.cpp -o TravelAgencyUnit
           ./TravelAgencyUnit
         fi
